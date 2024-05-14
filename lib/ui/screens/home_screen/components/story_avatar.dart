@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:ig_story/data/model/user_model.dart';
 import 'package:ig_story/ui/screens/story_screen/story_screen.dart';
+import 'package:ig_story/utilities/route_animation.dart';
 
 import '../../../../utilities/app_asset.dart';
 import '../../../../utilities/app_colors.dart';
@@ -25,9 +26,7 @@ class StoryAvatar extends StatelessWidget {
             onTap: (){
               if(myAvatar) return;
 
-              Navigator.push(context, MaterialPageRoute(builder: (context){
-                return StoryScreen(userData: userData!,);
-              }));
+              Navigator.of(context).push(animateRoute(StoryScreen(userData: userData!)));
             },
             child: Container(
               height: 80,
