@@ -12,8 +12,6 @@ class GestureInteractionService{
 
   bool ignorePointer = false;
 
-  int currentIndex = 0;
-
   int? _tapDownTime;
   int? _tapUpTime;
 
