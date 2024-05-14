@@ -38,7 +38,7 @@ class StoryScreenNavbar extends StatelessWidget {
           const Spacer(),
           GestureDetector(
             onTap: (){
-              Navigator.pop(context);
+              Navigator.popUntil(context, (route) => route.isFirst);
             },
             child: Container(
               height: 40,
