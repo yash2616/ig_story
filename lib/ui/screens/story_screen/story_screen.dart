@@ -63,7 +63,7 @@ class _StoryScreenState extends State<StoryScreen> {
   }
 
   void nextStory() {
-    if(_currentStoryPage.value < 2) {
+    if(_currentStoryPage.value < (serviceLocator<StoryCubit>().users[_currentUserPage.value].stories.length - 1)) {
       _storyPageController.nextPage(duration: const Duration(milliseconds: 350), curve: Curves.linearToEaseOut);
       _currentStoryPage.value += 1;
     }
@@ -87,6 +87,9 @@ class _StoryScreenState extends State<StoryScreen> {
       _storyPageController.animateToPage(0, duration: const Duration(milliseconds: 350), curve: Curves.linearToEaseOut);
       _currentStoryPage.value = 0;
       _currentUserPage.value += 1;
+    }
+    else{
+      Navigator.popUntil(context, (route) => route.isFirst);
     }
   }
 
