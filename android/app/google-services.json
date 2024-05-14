@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "609209861009",
+    "project_id": "ig-story-e65c0",
+    "storage_bucket": "ig-story-e65c0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:609209861009:android:99bac7d15cd809d7bb9030",
+        "android_client_info": {
+          "package_name": "com.example.ig_story"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCqFKtHQ_BB4Pco3u6HxUSDgv_RFclhCT4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
