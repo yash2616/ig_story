@@ -11,17 +11,17 @@ class StoryCubit extends Cubit<StoryState> {
 
   final StoryRepository _storyRepository = StoryRepository();
 
-  List<UserModel> _users = [];
+  List<UserModel> users = [];
 
   void fetchStories() async {
     emit(const StoryLoadingState());
-    _users = await _storyRepository.fetchStories();
-    emit(StoryLoadedState(users: _users));
+    users = await _storyRepository.fetchStories();
+    emit(StoryLoadedState(users: users));
   }
 
   void refreshStories() {
     emit(StoryLoadedState(
-      users: _users,
+      users: users,
       buildNo: state is StoryLoadedState
           ? (state as StoryLoadedState).buildNo + 1
           : 0,
