@@ -1,0 +1,1 @@
+const SQFLITE_DB_VERSION = 6;
