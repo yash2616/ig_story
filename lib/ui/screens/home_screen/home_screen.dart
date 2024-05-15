@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ig_story/core/service_locator.dart';
 import 'package:ig_story/logic/cubit/story_cubit/story_cubit.dart';
-import 'package:ig_story/utilities/app_asset.dart';
-import 'package:ig_story/utilities/app_colors.dart';
 import 'package:ig_story/utilities/media_query.dart';
 
 import 'components/home_header.dart';
@@ -21,7 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
-    // serviceLocator<StoryCubit>().fetchStories();
+    serviceLocator<StoryCubit>().fetchStories();
   }
 
   @override
