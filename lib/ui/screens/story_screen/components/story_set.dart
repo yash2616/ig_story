@@ -48,7 +48,7 @@ class StorySet extends StatelessWidget {
             itemBuilder: (context, index){
               return CachedNetworkImage(
                 imageUrl: userData.stories[index].mediaUrl,
-                fit: BoxFit.cover,
+                fit: BoxFit.fitWidth,
                 placeholder: (context, _){
                   return Container(
                     height: displayHeight(context),
