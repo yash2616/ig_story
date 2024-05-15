@@ -50,7 +50,7 @@ jobs:
         run: touch .env
 
       - name: Install dependencies
-        run: flutter pub get && flutter test --platform android integration_test/app_test.dart
+        run: flutter pub get && flutter test integration_test/app_test.dart
 
 #      - name: Integration Test
 #        run: flutter test integration_test/app_test.dart
