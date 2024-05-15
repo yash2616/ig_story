@@ -74,7 +74,7 @@ class _StoryScreenState extends State<StoryScreen> {
 
   void previousUser() {
     if(_currentUserPage.value > 0){
-      _userPageController.previousPage(duration: const Duration(milliseconds: 350), curve: Curves.linearToEaseOut);
+      _userPageController.previousPage(duration: const Duration(milliseconds: 550), curve: Curves.fastEaseInToSlowEaseOut);
       _storyPageController.animateToPage(0, duration: const Duration(milliseconds: 350), curve: Curves.linearToEaseOut);
       _currentStoryPage.value = 0;
       _currentUserPage.value -= 1;
@@ -83,7 +83,7 @@ class _StoryScreenState extends State<StoryScreen> {
 
   void nextUser() {
     if(_currentUserPage.value < (serviceLocator<StoryCubit>().users.length - 1)){
-      _userPageController.nextPage(duration: const Duration(milliseconds: 350), curve: Curves.linearToEaseOut);
+      _userPageController.nextPage(duration: const Duration(milliseconds: 550), curve: Curves.fastEaseInToSlowEaseOut);
       _storyPageController.animateToPage(0, duration: const Duration(milliseconds: 350), curve: Curves.linearToEaseOut);
       _currentStoryPage.value = 0;
       _currentUserPage.value += 1;
@@ -99,6 +99,7 @@ class _StoryScreenState extends State<StoryScreen> {
       body: PageView.builder(
         controller: _userPageController,
         itemCount: serviceLocator<StoryCubit>().users.length,
+        physics: const NeverScrollableScrollPhysics(),
         itemBuilder: (context, index){
           return StorySet(
             pageController: _storyPageController,
@@ -107,6 +108,8 @@ class _StoryScreenState extends State<StoryScreen> {
             tapUp: tapUp,
             nextStory: nextStory,
             currentPage: _currentStoryPage,
+            nextUser: nextUser,
+            previousUser: previousUser,
           );
         },
       ),

@@ -15,7 +15,9 @@ class StorySet extends StatelessWidget {
     required this.tapDown,
     required this.tapUp,
     required this.currentPage,
-    required this.nextStory
+    required this.nextStory,
+    required this.nextUser,
+    required this.previousUser
   });
 
   final PageController pageController;
@@ -24,15 +26,23 @@ class StorySet extends StatelessWidget {
   final Function(PointerUpEvent) tapUp;
   final ValueNotifier<int> currentPage;
   final VoidCallback nextStory;
+  final VoidCallback nextUser;
+  final VoidCallback previousUser;
+
+  void swipeControl(horizontalDragDetails, allowSwipe){
+
+  }
 
   @override
   Widget build(BuildContext context) {
+    bool allowSwipe = true;
     return Stack(
       children: [
         SizedBox(
           height: displayHeight(context),
           width: displayWidth(context),
           child: PageView.builder(
+            physics: const NeverScrollableScrollPhysics(),
             controller: pageController,
             itemCount: userData.stories.length,
             itemBuilder: (context, index){
@@ -59,6 +69,24 @@ class StorySet extends StatelessWidget {
           },
           onLongPressUp: (){
             // TODO: Story un-pause logic to be added
+          },
+          onHorizontalDragUpdate: (details){
+            if(!allowSwipe) return;
+
+            if(details.delta.dx < -5){
+              nextUser();
+              allowSwipe = false;
+              Future.delayed(const Duration(milliseconds: 1200), (){
+                allowSwipe = true;
+              });
+            }
+            else if(details.delta.dx > 5){
+              previousUser();
+              allowSwipe = false;
+              Future.delayed(const Duration(milliseconds: 1200), (){
+                allowSwipe = true;
+              });
+            }
           },
           child: Listener(
             onPointerDown: tapDown,
