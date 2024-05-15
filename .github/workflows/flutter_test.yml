@@ -46,6 +46,9 @@ jobs:
         with:
           flutter-version: '3.10.5'
 
+      - name: Setup android emulator
+        uses: flutter-action/setup-android@v2
+
       - name: Setting env
         run: touch .env
 
