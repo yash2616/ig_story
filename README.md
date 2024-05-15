@@ -51,6 +51,12 @@ To run IG Story locally, follow these steps:
     flutter run
     ```
 
+## Integration Testing
+
+Run the following command:
+   ```sh
+   flutter test integration_test/app_test.dart
+   ```
 
 ## Usage
 
