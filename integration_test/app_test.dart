@@ -4,6 +4,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:ig_story/core/service_locator.dart';
 import 'package:ig_story/logic/services/app_manager_service.dart';
+import 'package:ig_story/ui/custom_widgets/custom_close_button.dart';
 import 'package:ig_story/ui/screens/home_screen/components/story_avatar.dart';
 import 'package:ig_story/ui/screens/home_screen/home_screen.dart';
 import 'package:ig_story/ui/screens/story_screen/story_screen.dart';
@@ -20,7 +21,6 @@ void main() async {
   AppManager().setStoryCollection(dotenv.env['STORY_COLLECTION'] ?? '');
 
   group('Screen test', () {
-
     testWidgets(
       'home screen redirection',
       (tester) async {
@@ -40,6 +40,33 @@ void main() async {
         expect(find.byType(StoryScreen), findsOneWidget);
       },
     );
+  });
 
+  group('Button test', () {
+    testWidgets(
+      'story force close',
+      (tester) async {
+        await tester.pumpWidget(const app.MyApp());
+        await tester.pumpAndSettle(const Duration(seconds: 3));
+        await tester.tap(find.byType(StoryAvatar).at(1));
+        await tester.pump(const Duration(seconds: 1));
+        await tester.tap(find.byType(CustomCloseButton));
+        await tester.pumpAndSettle();
+        expect(find.byType(HomeScreen), findsOneWidget);
+      },
+    );
+  });
+
+  group('Story functionality test', () {
+    testWidgets(
+      'story auto close',
+          (tester) async {
+        await tester.pumpWidget(const app.MyApp());
+        await tester.pumpAndSettle(const Duration(seconds: 3));
+        await tester.tap(find.byType(StoryAvatar).at(1));
+        await tester.pumpAndSettle();
+        expect(find.byType(HomeScreen), findsOneWidget);
+      },
+    );
   });
 }
