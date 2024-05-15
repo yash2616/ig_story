@@ -1,0 +1,23 @@
+name: Flutter Integration Test
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Flutter
+        uses: flutter/flutter-actions@v3
+        with:
+          channel: stable
+      - name: Check for flutter version
+        run: flutter --version
+      - name: Install dependencies
+        run: flutter pub get
+      - name: Integration Test
+        run: flutter test integration_test/app_test.dart
