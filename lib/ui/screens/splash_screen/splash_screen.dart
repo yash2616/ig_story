@@ -68,9 +68,25 @@ class _SplashScreenState extends State<SplashScreen> {
         width: displayWidth(context),
         color: Colors.white,
         alignment: Alignment.center,
-        child: Image.asset(
-          AppAssets.igLogo,
-          height: 80,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Image.asset(
+              AppAssets.igLogo,
+              height: 80,
+            ),
+            const SizedBox(height: 16,),
+            const Text(
+              'by Yash Srivastava',
+              style: TextStyle(
+                color: Colors.black,
+                fontWeight: FontWeight.w600,
+                fontSize: 14,
+              ),
+            ),
+          ],
         ),
       ),
     );

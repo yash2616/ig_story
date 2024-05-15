@@ -59,7 +59,7 @@ jobs:
         with:
           api-level: 29
           target: default
-          arch: x86
+          arch: x86_64
 
       - name: Start emulator
         run: emulator -avd Pixel_2_API_29 -no-window -no-audio
