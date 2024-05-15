@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:ig_story/logic/cubit/story_cubit/story_cubit.dart';
 import 'package:ig_story/logic/services/app_manager_service.dart';
-import 'package:ig_story/ui/screens/home_screen/home_screen.dart';
 import 'package:ig_story/ui/screens/splash_screen/splash_screen.dart';
 
 import 'core/service_locator.dart';
