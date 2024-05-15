@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../utilities/app_asset.dart';
+import '../../../custom_widgets/custom_close_button.dart';
 
 class StoryScreenNavbar extends StatelessWidget {
   const StoryScreenNavbar({
@@ -36,21 +36,7 @@ class StoryScreenNavbar extends StatelessWidget {
             ),
           ),
           const Spacer(),
-          GestureDetector(
-            onTap: (){
-              Navigator.popUntil(context, (route) => route.isFirst);
-            },
-            child: Container(
-              height: 40,
-              width: 40,
-              color: Colors.transparent,
-              child: const Icon(
-                Icons.close,
-                color: Colors.black,
-                size: 24,
-              ),
-            ),
-          ),
+          const CustomCloseButton(),
         ],
       ),
     );
