@@ -17,8 +17,8 @@ void main() async {
   Firebase.initializeApp();
   setupServices();
   await dotenv.load(fileName: '.env');
-  AppManager().setUserCollection(dotenv.env['USER_COLLECTION'] ?? '');
-  AppManager().setStoryCollection(dotenv.env['STORY_COLLECTION'] ?? '');
+  AppManager().setUserCollection('stories');
+  AppManager().setStoryCollection('story_list');
 
   group('Screen test', () {
     testWidgets(
