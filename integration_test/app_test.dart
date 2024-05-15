@@ -16,7 +16,6 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Firebase.initializeApp();
   setupServices();
-  await dotenv.load(fileName: '.env');
   AppManager().setUserCollection('stories');
   AppManager().setStoryCollection('story_list');
 
