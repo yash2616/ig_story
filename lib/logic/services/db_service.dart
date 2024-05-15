@@ -43,15 +43,16 @@ class DatabaseService {
     await db.execute('''
         CREATE TABLE IF NOT EXISTS Users(
           userName NVARCHAR PRIMARY KEY,
-          profilePic NVARCHAR NOT NULL,
+          profilePic NVARCHAR NOT NULL
         )
       ''');
 
     await db.execute('''
         CREATE TABLE IF NOT EXISTS Story(
+          userName NVARCHAR,
           mediaUrl NVARCHAR,
           seen INTEGER,
-          FOREIGN KEY (userName) REFERENCES Users (userName),
+          FOREIGN KEY (userName) REFERENCES Users (userName)
         )
       ''');
   }
@@ -73,14 +74,18 @@ class DatabaseService {
 
       for(var userData in result){
         final List<Map<String, dynamic>> stories = await getStoryListByUsername((userData['userName'] ?? '') as String);
+        final List<Map<String, dynamic>> storyList = [];
+        for (var element in stories) {
+          storyList.add({
+            'mediaUrl': element['mediaUrl'],
+            'seen': element['seen'] == 1 ? true : false,
+          });
+        }
         userStories.add(
           UserModel.fromMap({
             'userName': userData['userName'],
             'profilePic': userData['profilePic'],
-            'stories': stories.map((formattedStory){
-              formattedStory['seen'] = formattedStory['seen'] == 1 ? true : false;
-              return formattedStory;
-            }),
+            'stories': storyList,
           })
         );
       }
@@ -128,9 +133,10 @@ class DatabaseService {
         database.rawQuery(
           '''
           INSERT OR IGNORE INTO Story
-          VALUES(?,?) 
+          VALUES(?,?,?) 
           ''',
           [
+            userModel.userName,
             story.mediaUrl,
             story.seen ? 1 : 0
           ],
