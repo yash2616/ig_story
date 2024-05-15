@@ -1,23 +1,53 @@
-name: Flutter Integration Test
+#name: Flutter Integration Test
+#
+#on:
+#  push:
+#    branches: [ main ]
+#  pull_request:
+#    branches: [ main ]
+#
+#jobs:
+#  build:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: actions/checkout@v3
+#      - name: Use Flutter
+#        uses: flutter/flutter-actions@v3
+#        with:
+#          channel: stable
+#      - name: Check for flutter version
+#        run: flutter --version
+#      - name: Install dependencies
+#        run: flutter pub get
+#      - name: Integration Test
+#        run: flutter test integration_test/app_test.dart
+#
+#
+
+name: Flutter Test
 
 on:
   push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+    branches:
+      - main
+      - master
 
 jobs:
   build:
+    name: Test
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v3
-      - name: Use Flutter
-        uses: flutter/flutter-actions@v3
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
         with:
-          channel: stable
-      - name: Check for flutter version
-        run: flutter --version
+          flutter-version: '3.10.5'
+
       - name: Install dependencies
         run: flutter pub get
-      - name: Integration Test
-        run: flutter test integration_test/app_test.dart
+
+      - name: Run tests
+        run: flutter test
